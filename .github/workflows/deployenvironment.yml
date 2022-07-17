@@ -10,6 +10,12 @@ jobs:
       - name: Create resource group
         shell: pwsh
         run: |
-
+          $location = '${{ github.event.repository.name }}-${{ github.ref_name }}'.replace('/', '-')
           az login --use-device-code
-          az group create --name '${{ github.event.repository.name }}-${{ github.ref_name }}'.replace('/', '-') --location uksouth
+          az group create --name $location --location uksouth
+
+          az deployment group create `
+          --name $location-deployment `
+          --resource-group $location `
+          --template-file EnvironmentTests\bicep\main.bicep `
+          --parameters @storage.parameters.json

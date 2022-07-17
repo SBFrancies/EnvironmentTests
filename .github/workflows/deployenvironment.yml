@@ -1,0 +1,13 @@
+name: Deply PR environment
+on:
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Create resource group
+        shell: pwsh
+        run: |
+          az group create --name '${{ github.event.repository.name }}-${GITHUB_REF##*/}' --location uksouth

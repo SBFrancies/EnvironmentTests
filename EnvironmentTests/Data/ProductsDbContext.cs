@@ -45,7 +45,7 @@ namespace EnvironmentTests.Data
                 entity.Property(e => e.Description).HasMaxLength(500);
                 entity.HasMany(e => e.Colours)
                 .WithMany(e => e.Products)
-                .UsingEntity("ProductColours", a => a.ToTable("ProductColours", Schema, b => b.IsTemporal(
+                .UsingEntity(a => a.ToTable("ProductColours", Schema, b => b.IsTemporal(
             c =>
             {
                 c.HasPeriodStart("ValidFrom");

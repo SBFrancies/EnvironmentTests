@@ -11,4 +11,4 @@ jobs:
         shell: pwsh
         run: |
           az login
-          az group create --name '${{ github.event.repository.name }}-${GITHUB_REF##*/}' --location uksouth
+          az group create --name '${{ github.event.repository.name }}-${{ github.ref }}' --location uksouth

@@ -1,4 +1,4 @@
-name: Deploy resources
+name: Delete resources
 on:
   workflow_dispatch:
 jobs:
@@ -8,5 +8,5 @@ jobs:
       - name: Delete resource group
         shell: pwsh
         run: |
-          az login
+          az login --use-device-code
           az group delete -n '${{ github.event.repository.name }}-${{ github.ref_name }}'.replace('/', '-') -y

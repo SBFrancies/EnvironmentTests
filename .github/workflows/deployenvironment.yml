@@ -17,5 +17,4 @@ jobs:
           az deployment group create `
           --name $location-deployment `
           --resource-group $location `
-          --template-file EnvironmentTests\bicep\main.bicep `
-          --parameters @storage.parameters.json
+          --template-file EnvironmentTests\bicep\main.bicep

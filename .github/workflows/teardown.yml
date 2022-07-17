@@ -1,0 +1,12 @@
+name: Deploy resources
+on:
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete resource group
+        shell: pwsh
+        run: |
+          az login
+          az group delete -n '${{ github.event.repository.name }}-${{ github.ref_name }}'.replace('/', '-') -y

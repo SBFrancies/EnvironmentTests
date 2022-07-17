@@ -10,5 +10,6 @@ jobs:
       - name: Create resource group
         shell: pwsh
         run: |
+
           az login
-          az group create --name '${{ github.event.repository.name }}-${{ github.ref_name }}' --location uksouth
+          az group create --name '${{ github.event.repository.name }}-${{ github.ref_name }}'.replace('/', '-') --location uksouth

@@ -1,4 +1,4 @@
-name: Deply PR environment
+name: Deploy branch environment
 on:
   workflow_dispatch:
 jobs:

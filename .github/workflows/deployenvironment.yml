@@ -10,4 +10,5 @@ jobs:
       - name: Create resource group
         shell: pwsh
         run: |
+          az login
           az group create --name '${{ github.event.repository.name }}-${GITHUB_REF##*/}' --location uksouth

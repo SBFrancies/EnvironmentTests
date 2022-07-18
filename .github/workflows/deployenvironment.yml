@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v3
       - uses: azure/login@v1
         with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Create resource group
         shell: pwsh
         run: |
@@ -20,8 +20,8 @@ jobs:
           $uniqueId = (New-Guid).Guid.replace('-', '')
           $password = ("!@#$%^&*0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz".tochararray() | sort {Get-Random})[0..40] -join ''
           $json = Get-Content 'EnvironmentTests\bicep\main.parameters.json' | ConvertFrom-Json 
-          $json.parameters.uniqueId.value =  $uniqueId
-          $json.parameters.sqlServerPassword.value =  $password
+          $json.parameters.uniqueId.value = $uniqueId
+          $json.parameters.sqlServerPassword.value = $password
           $json | ConvertTo-Json | Out-File 'EnvironmentTests\bicep\main.parameters.json'
 
           az deployment group create `

@@ -1,14 +1,14 @@
 param location string = resourceGroup().location
-param uniqueId string = uniqueString(resourceGroup().id)
+param uniqueId string
 param registryName string = '${uniqueId}cr'
 param appServicePlanName string = '${uniqueId}-svcplan'
-param appServicePlanSku string = 'F1'
+param appServicePlanSku string = 'B2'
 param appServiceName string = '${uniqueId}-site'
 param sqlServerName string = '${uniqueId}-sqlsvr'
 param linuxFxVersion string = 'DOTNETCORE|6.0' 
 param sqlDatabaseName string = '${uniqueId}-sqldb'
 @secure()
-param sqlServerPassword string = newGuid()
+param sqlServerPassword string
 
 resource containerRegistry 'Microsoft.ContainerRegistry/registries@2022-02-01-preview' = {
   name: registryName

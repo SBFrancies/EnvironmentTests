@@ -7,11 +7,14 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: Create resource group
-        shell: pwsh
-        run: |
+      - name: Login via Az module
+        uses: azure/login@v1
+        with:
+          creds: '${{secrets.AZURE_CREDENTIALS}}'
+          enable-AzPSSession: true
+        - run: |
           az login --use-device-code
-           
+
           $location = '${{ github.event.repository.name }}-${{ github.ref_name }}'.replace('/', '-')
 
           az group create --name $location --location uksouth

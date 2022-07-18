@@ -1,11 +1,12 @@
 param location string = resourceGroup().location
-param registryName string = '${location}-cr'
-param appServicePlanName string = '${location}-svcplan'
+param uniqueId string = uniqueString(resourceGroup().id)
+param registryName string = '${uniqueId}cr'
+param appServicePlanName string = '${uniqueId}-svcplan'
 param appServicePlanSku string = 'F1'
-param appServiceName string = '${location}-site'
-param sqlServerName string = '${location}-sqlsvr'
+param appServiceName string = '${uniqueId}-site'
+param sqlServerName string = '${uniqueId}-sqlsvr'
 param linuxFxVersion string = 'DOTNETCORE|6.0' 
-param sqlDatabaseName string = '${location}-cr-sqldb'
+param sqlDatabaseName string = '${uniqueId}-sqldb'
 @secure()
 param sqlServerPassword string = newGuid()
 
